@@ -15,7 +15,7 @@ function GetWebFile($fileName) {
 
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
-    # Download new 'run' file from BitBucket
+    # Download new 'run' file from remote
     Invoke-WebRequest "https://raw.githubusercontent.com/dealdiane/dotnet-runner/master/.run/$fileName" -OutFile $tempWebFile -Headers @{"Cache-Control"="no-cache"}
 
     Return $tempWebFile
@@ -67,7 +67,7 @@ foreach ($buildFile in $buildFiles) {
     
     if (-Not (Test-Path $buildFilePath)) {
         Write-Host "Local script '$buildFile' was not found in the current directory."
-        Write-Host 'Downloading current version from BitBucket...'
+        Write-Host 'Downloading latest version...'
 
         $webFile = GetWebFile $buildFile
 
