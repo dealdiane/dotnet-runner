@@ -1,0 +1,1 @@
+@powershell -noprofile -executionpolicy bypass -file ./run-dev.ps1
